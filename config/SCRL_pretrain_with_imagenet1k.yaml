@@ -1,0 +1,70 @@
+model:
+  SSL: SCRL 
+  Positive_Selection: cluster
+  cluster: True
+  cluster_num: 24
+  soft_gamma: 0.5
+  backbone: resnet50
+  backbone_pretrain: ./pretrain/resnet50-19c8e357.pth
+  fix_pred_lr: null
+  SyncBatchNorm: False
+  resume: 
+
+MoCo:
+  dim: 2048
+  k: 65536
+  m: 0.999
+  t: 0.07
+  mlp: True
+  neighborhood_size: 8
+  multi_positive: True 
+
+
+data:
+  name: movienet
+  data_path: /tmpdata/compressed_shot_images
+  shot_info: ./data/MovieNet_shot_num.json
+  _T: train
+  frame_size: 3
+  clipshuffle: True
+  clipshuffle_len: 16
+  # aug_type: asymmetric # asymmetric or symmetry 
+  workers: 96
+  fixed_aug_shot: True
+  color_aug_for_q: False
+  color_aug_for_k: True
+  
+
+optim:
+  epochs: 100
+  bs: 1024
+  momentum: 0.9
+  optimizer: sgd
+  lr: 0.03
+  lr_cos: True
+  schedule: # works when lr_cos is False
+    - 50
+    - 100
+    - 150
+  wd: 0.0001
+  gradient_norm: -1 # off when <= 0
+
+
+log:
+  dir: ./output/
+  print_freq: 10
+
+DDP:
+  multiprocessing_distributed: True
+  machine_num: 1
+  world_size: 8
+  rank: 0
+  dist_url: env://
+  dist_backend: nccl
+  seed: null
+  gpu: null
+  master_ip: localhost
+  master_port: 10008
+  node_num: 0
+
+
