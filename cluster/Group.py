@@ -15,7 +15,7 @@ class Cluster_GPU():
         max_iter=20, 
         device=torch.device('cuda'), 
         debug=False):
-        self.cluster_fuc = KMeans_Mixed(
+        self.cluster_func = KMeans_Mixed(
             num_clusters=num_clusters, 
             shift_threshold=shift_threshold, 
             max_iter=max_iter, 
@@ -31,13 +31,13 @@ class Cluster_GPU():
         output_vector = x.clone().detach()
         # D == 2
         if dimension == 2:
-            _, choice_cluster, choice_points = self.cluster_fuc(output_vector, debug=self.debug)
+            _, choice_cluster, choice_points = self.cluster_func(output_vector, debug=self.debug)
         # D >= 3
         elif dimension == 3:
             choice_cluster_list, cluster_points_list = [], []
             for batch in range(B):
                 y = output_vector.narrow(dim=0, start=batch, length=1).squeeze(0)
-                _, choice_cluster, choice_points = self.cluster_fuc(y, debug=self.debug)
+                _, choice_cluster, choice_points = self.cluster_func(y, debug=self.debug)
                 choice_cluster_list.append(choice_cluster)
                 cluster_points_list.append(choice_points)
             choice_cluster = np.stack(choice_cluster_list)
