@@ -89,7 +89,7 @@ def train(args, model, train_loader, optimizer, epoch, criterion, log_interval=3
     for batch_idx, (data, target, _) in enumerate(train_loader):
         data = data.cuda(non_blocking=True)
         target = target.unsqueeze(-1).cuda(non_blocking=True)
-        output = model(data)
+        output = model(data, target)
         output = output.view(-1, 2)
         target = target.view(-1)
         loss = criterion(output, target)
@@ -122,7 +122,7 @@ def inference(args, model, loader, threshhold=0.5):
         for w_id in range(data_len//stride):
             start_pos = w_id*stride
             _data = data[start_pos:start_pos + args.seq_len].unsqueeze(0)
-            output = model(_data)
+            output = model(_data, None)
             output = output.view(-1, 2)
             prob = output[:, 1]
             prob = prob[stride//2:stride+stride//2].squeeze()

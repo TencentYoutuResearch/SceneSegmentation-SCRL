@@ -1,0 +1,11 @@
+output/
+compressed_shot_images/
+embeddings/
+checkpoints/
+SceneSeg/output/
+pretrain/
+__pycache__/
+*.pkl
+*.log
+*.txt
+*.pth

@@ -21,6 +21,8 @@ class BiLSTM(nn.Module):
             dropout=lstm_drop_rate,
             bidirectional=True
         )
+        # The probability is set to 0 by default
+        self.input_shotmask = ShotMask(p=0)
         self.input_dropout = nn.Dropout(p=input_drop_rate)
         self.fc_dropout = nn.Dropout(p=fc_drop_rate)
         self.fc1 = nn.Linear(self.hidden_size*2, hidden_size)
@@ -33,7 +35,9 @@ class BiLSTM(nn.Module):
             self.bn2 = nn.BatchNorm1d(hidden_size)
         
         
-    def forward(self, x):
+    def forward(self, x, y):
+        if self.training:
+            x = self.input_shotmask(x, y)
         x = self.input_dropout(x)
         x = self.embed_fc(x)
         
@@ -57,6 +61,24 @@ class BiLSTM(nn.Module):
         out = self.fc2(out)
         if not self.training:
             out = self.softmax(out)
+        return out
+
+
+class ShotMask(nn.Module):
+    '''
+    Drop the shot from the middle of a scene
+    '''
+    def __init__(self, p=0.2):
+        super(ShotMask, self).__init__()
+        self.p = p
+
+    def forward(self, x, y):
+        # keep the cue
+        B, L , _ = x.size()
+        y_shift = torch.cat([torch.zeros(B,1,1).bool().to(y.device), y.bool()],dim=1)[:,:L,:]
+        self.mask = torch.rand(*y.size()) >= self.p
+        self.mask = self.mask.bool().to(x.device) | y.bool() | y_shift
+        out = x.mul(self.mask)
         return out
 
 if __name__ == '__main__':

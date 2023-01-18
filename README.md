@@ -30,8 +30,8 @@ cp -r ./compressed_shot_images/ /tmpdata/
 ## Initialization Weights Preparation
 Download the ResNet-50 weights trained on ImageNet-1k ([resnet50-19c8e357.pth](https://download.pytorch.org/models/resnet50-19c8e357.pth)), and save it in `./pretrain/` folder.
 
-##  Prerequisites
-
+## Prerequisites
+### Requirements
 * python >= 3.6
 * pytorch >= 1.6
 * cv2
@@ -40,8 +40,10 @@ Download the ResNet-50 weights trained on ImageNet-1k ([resnet50-19c8e357.pth](h
 * yaml
 * sklearn
 
+### Hardware
+* 8 NVIDIA V100 (32GB) GPUs
 
-## Usage
+# Usage
 ### STEP 1: Encoder Pre-training
 Using the default configuration to pretrain the model. Make sure the data path is correct and the GPUs are sufficient (e.g. 8 NVIDIA V100 GPUs)
 ```
