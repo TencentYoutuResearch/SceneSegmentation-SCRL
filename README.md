@@ -79,8 +79,8 @@ We provide checkpoints, logs and results under two different pre-training settin
 
 | Initialization | AP | F1 | Config File | STEP 1 <br> Pre-training | STEP 2 <br> Embeddings| STEP 3 <br>  Fine-tuning  |
 | :-----| :---- | :---- | :---- | :-----| :---- | :---- |
-| w/o  ImageNet-1k | 55.16 | 51.32 | SCRL_pretrain <br> _without_imagenet1k.yaml | [ckp and log](https://drive.google.com/drive/folders/1ZYg9PFRU_lt3G5qJrldkguA52T2oxErR?usp=sharing) | [embedings](https://drive.google.com/drive/folders/1uen_HP3BZu8bcrPBikkgV3j9wzUjQ0C1?usp=sharing) | [log](https://drive.google.com/drive/folders/1rJbOnVbqTdPmnh2grIkePXOmwpNELnrK?usp=sharing) |
-| w/ ImageNet-1k | 56.65 | 52.45 | SCRL_pretrain <br> _with_imagenet1k.yaml | [ckp and log](https://drive.google.com/drive/folders/1BG5ZLqrPKKGTtDIZj8aps_QuWc6K3c3V?usp=sharing) | [embedings](https://drive.google.com/drive/folders/1NFvGhkvRxpmEJYNjRnwp3ybuHQaG25gW?usp=sharing) | [log](https://drive.google.com/drive/folders/1dE0JFi-MDua70_CgI1CvyLNRnhwLjaUV?usp=sharing) |
+| w/o  ImageNet-1k | 55.16 | 51.32 | SCRL_pretrain <br> _without_imagenet1k.yaml | [ckp and log](https://drive.google.com/drive/folders/1ZYg9PFRU_lt3G5qJrldkguA52T2oxErR?usp=sharing) | [embedings](https://drive.google.com/drive/folders/1uen_HP3BZu8bcrPBikkgV3j9wzUjQ0C1?usp=sharing) | [ckps and log](https://drive.google.com/drive/folders/1rJbOnVbqTdPmnh2grIkePXOmwpNELnrK?usp=sharing) |
+| w/ ImageNet-1k | 56.65 | 52.45 | SCRL_pretrain <br> _with_imagenet1k.yaml | [ckp and log](https://drive.google.com/drive/folders/1BG5ZLqrPKKGTtDIZj8aps_QuWc6K3c3V?usp=sharing) | [embedings](https://drive.google.com/drive/folders/1NFvGhkvRxpmEJYNjRnwp3ybuHQaG25gW?usp=sharing) | [ckps and log](https://drive.google.com/drive/folders/1dE0JFi-MDua70_CgI1CvyLNRnhwLjaUV?usp=sharing) |
 
 
 ## License
